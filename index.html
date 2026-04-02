@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIZZUTO FAMILY | Official Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Cairo', sans-serif; box-sizing: border-box; }
+        body { cursor: none !important; background-color: #050505; color: #fff; overflow-x: hidden; }
+
+        /* [1. الماوس المخصص] */
+        #cursor-dot, #cursor-outline { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 100000; border-radius: 50%; opacity: 0; }
+        #cursor-dot { width: 8px; height: 8px; background: #ff0000; box-shadow: 0 0 15px #ff0000; }
+        #cursor-outline { width: 40px; height: 40px; border: 1px solid #ff0000; transition: transform 0.15s; }
+        .cursor-trail { width: 4px; height: 4px; background: #ff0000; border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; opacity: 0.4; }
+
+        /* [2. لودر خفيف وأنيق] */
+        #loader { position: fixed; inset: 0; background: #000; z-index: 999999; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .loader-bar { width: 120px; height: 1px; background: #1a1a1a; margin-top: 20px; position: relative; overflow: hidden; }
+        #loader-progress { position: absolute; height: 100%; background: #ff0000; width: 0%; transition: 1s; box-shadow: 0 0 10px #ff0000; }
+
+        /* [3. الأقسام المنفصلة] */
+        .page-content { display: none; opacity: 0; transform: translateY(20px); transition: 0.6s all ease-out; }
+        .active-page { display: block; opacity: 1; transform: translateY(0); }
+
+        /* [4. جماليات القصة والقوانين] */
+        .story-node { position: relative; padding-right: 30px; border-right: 1px solid #333; margin-bottom: 40px; }
+        .story-node::before { content: ''; position: absolute; right: -5px; top: 0; width: 10px; height: 10px; background: #ff0000; border-radius: 50%; box-shadow: 0 0 10px #ff0000; }
+        
+        .rule-card { background: linear-gradient(145deg, #0a0a0a, #111); border: 1px solid #222; border-right: 4px solid #ff0000; transition: 0.4s; }
+        .rule-card:hover { transform: scale(1.03); background: #151515; border-right-width: 10px; }
+
+        /* [5. الديسكورد الفخم] */
+        .discord-box { background: linear-gradient(to bottom right, #5865F2, #313338); border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <h1 class="text-2xl font-black italic tracking-[0.3em] animate-pulse">RIZZUTO</h1>
+        <div class="loader-bar"><div id="loader-progress"></div></div>
+    </div>
+
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
+    <nav class="fixed top-0 w-full z-50 p-8 flex justify-between items-center bg-gradient-to-b from-black to-transparent">
+        <div class="text-2xl font-black italic tracking-tighter">RIZZUTO <span class="text-red-600">FAMILY</span></div>
+        <div class="hidden md:flex gap-10 text-[10px] font-bold uppercase tracking-[3px]">
+            <button onclick="showPage('home')" class="hover:text-red-600 transition">الرئيسية</button>
+            <button onclick="showPage('story')" class="hover:text-red-600 transition">القصة</button>
+            <button onclick="showPage('rules')" class="hover:text-red-600 transition">القوانين</button>
+            <button onclick="showPage('discord')" class="text-blue-500 hover:text-white transition">المقر</button>
+        </div>
+    </nav>
+
+    <main class="pt-20">
+        <section id="page-home" class="page-content active-page min-h-screen flex flex-col justify-center items-center text-center px-6">
+            <span class="text-red-600 font-bold tracking-[1em] text-xs mb-4 uppercase">The Sovereigns</span>
+            <h1 class="text-7xl md:text-[9rem] font-black italic leading-none mb-6">RIZZUTO FAMILY</h1>
+            <p class="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto italic">" القوة ليست في السلاح، بل في الرجال الذين يحملون الشعار.. نحن عائلة واحدة، مصير واحد. "</p>
+            <div class="mt-12 flex gap-4">
+                <button onclick="showPage('story')" class="bg-red-700 hover:bg-red-600 px-10 py-4 font-black transition-all">اكتشف التاريخ</button>
+                <button onclick="showPage('discord')" class="border border-white/10 hover:bg-white/5 px-10 py-4 font-black transition-all">دخول المقر</button>
+            </div>
+        </section>
+
+        <section id="page-story" class="page-content min-h-screen py-20 px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-5xl font-black italic mb-16 text-red-700">ملحمة الصعود</h2>
+                <div class="story-node">
+                    <span class="text-xs text-red-500 font-bold uppercase">المرحلة 1: التأسيس (الولادة)</span>
+                    <h3 class="text-2xl font-black mt-2 mb-4">عهد الشرف</h3>
+                    <p class="text-gray-400 leading-relaxed italic">من رحم الأحياء الفقيرة وبإرادة فولاذية، اجتمع المؤسس "رحيم" مع رجاله الأوائل. لم يكن الهدف المال، بل كان بناء كيان يحمي أفراده من غدر العصابات الأخرى. هنا وُضع "ميثاق الدم" الذي لا يُكسر.</p>
+                </div>
+                <div class="story-node">
+                    <span class="text-xs text-red-500 font-bold uppercase">المرحلة 2: التوسع (الحرب)</span>
+                    <h3 class="text-2xl font-black mt-2 mb-4">قبضة ريزوتو</h3>
+                    <p class="text-gray-400 leading-relaxed italic">بدأت العائلة بالتمدد، سيطرنا على الموانئ، المصانع، والشوارع الرئيسية. خضنا حروباً طاحنة ضد "الأسر السبعة" وخرجنا منها كقوة وحيدة لا تُنافس. أصبح اسم ريزوتو يبعث الرعب في قلوب الخونة والاطمئنان في قلوب الأوفياء.</p>
+                </div>
+                <div class="story-node" style="border:none">
+                    <span class="text-xs text-red-500 font-bold uppercase">المرحلة 3: السيادة (المجد)</span>
+                    <h3 class="text-2xl font-black mt-2 mb-4">الإمبراطورية العظمى</h3>
+                    <p class="text-white font-bold leading-relaxed italic">اليوم، ريزوتو ليست مجرد عصابة، بل هي إمبراطورية منظمة. بفضل Rahim Gaming والقيادة الحكيمة، أصبحنا نمتلك شوارع المدينة تحت سيطرتنا الكاملة. نحن الآن لا نتبع القوانين.. نحن من نصنعها.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-rules" class="page-content min-h-screen py-20 px-6">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="text-5xl font-black italic mb-16 uppercase">دستور <span class="text-red-700">الدم</span></h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="rule-card p-8">
+                        <h4 class="text-red-600 font-black text-xl mb-3">الولاء المطلق</h4>
+                        <p class="text-gray-400 text-sm italic">كلمة القائد هي القانون الأول والأخير. الخيانة تعني الطرد الأبدي.</p>
+                    </div>
+                    <div class="rule-card p-8">
+                        <h4 class="text-red-600 font-black text-xl mb-3">السرية التامة</h4>
+                        <p class="text-gray-400 text-sm italic">ما يحدث داخل المقر يبقى داخل المقر. تسريب الأسرار هو جريمة لا تُغتفر.</p>
+                    </div>
+                    <div class="rule-card p-8">
+                        <h4 class="text-red-600 font-black text-xl mb-3">احترام الشعار</h4>
+                        <p class="text-gray-400 text-sm italic">ارتداء شعار ريزوتو هو شرف؛ أي تصرف يسيء للعائلة سيُحاسب عليه الفرد فوراً.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-discord" class="page-content min-h-screen py-20 px-6">
+            <div class="max-w-4xl mx-auto discord-box p-12 text-center relative overflow-hidden">
+                <div class="relative z-10">
+                    <h2 class="text-6xl font-black italic mb-6">المقر الرقمي</h2>
+                    <p class="text-white/70 mb-10 text-lg">هل تملك الشجاعة والولاء لتكون جزءاً من النخبة؟ <br> بوابتنا مفتوحة فقط للرجال الذين يقدرون معنى "العائلة".</p>
+                    <a href="https://discord.gg/zcygRZrrJW" target="_blank" class="inline-block bg-white text-blue-600 px-16 py-5 rounded-full font-black text-xl hover:bg-gray-200 transition-all shadow-2xl">انضم إلى Discord</a>
+                </div>
+                <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none flex justify-center items-center">
+                    <h1 class="text-[20rem] font-black italic">R</h1>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 border-t border-white/5 text-center">
+        <p class="text-gray-600 text-[10px] tracking-[4px] uppercase mb-2">&copy; 2026 Rizzuto Family - All Rights Reserved</p>
+        <p class="text-white font-bold text-xs">Developed with <span class="text-red-600">Power</span> by <span class="italic underline">RAHIM</span></p>
+    </footer>
+
+    <script>
+        // [1] منطق اللودر
+        window.addEventListener('load', () => {
+            const progress = document.getElementById('loader-progress');
+            progress.style.width = '100%';
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => document.getElementById('loader').style.display = 'none', 600);
+            }, 1000);
+        });
+
+        // [2] دالة التنقل بين الصفحات
+        function showPage(id) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active-page'));
+            document.getElementById('page-' + id).classList.add('active-page');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // [3] منطق الماوس والذيل
+        const dot = document.getElementById('cursor-dot');
+        const outline = document.getElementById('cursor-outline');
+        const trails = [];
+        for (let i = 0; i < 8; i++) {
+            const t = document.createElement('div');
+            t.className = 'cursor-trail';
+            document.body.appendChild(t);
+            trails.push({ el: t, x: 0, y: 0 });
+        }
+
+        let mX = 0, mY = 0, dX = 0, dY = 0, oX = 0, oY = 0;
+        window.addEventListener('mousemove', e => {
+            mX = e.clientX; mY = e.clientY;
+            dot.style.opacity = outline.style.opacity = 1;
+        });
+
+        function animate() {
+            dX += (mX - dX) * 0.2; dY += (mY - dY) * 0.2;
+            dot.style.transform = `translate(${dX}px, ${dY}px) translate(-50%, -50%)`;
+            oX += (mX - oX) * 0.1; oY += (mY - oY) * 0.1;
+            outline.style.transform = `translate(${oX}px, ${oY}px) translate(-50%, -50%)`;
+            
+            let nX = dX, nY = dY;
+            trails.forEach((t, i) => {
+                t.x += (nX - t.x) * 0.3; t.y += (nY - t.y) * 0.3;
+                t.el.style.transform = `translate(${t.x}px, ${t.y}px) translate(-50%, -50%) scale(${(8-i)/8})`;
+                nX = t.x; nY = t.y;
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // حماية المحتوى
+        document.addEventListener('contextmenu', e => e.preventDefault());
+    </script>
+</body>
+</html>
